@@ -116,7 +116,8 @@ def scrape():
     facts = pd.read_html(url_facts)[0]
 
     facts.columns=['description', 'value']
-    facts.index.name = None
+    facts.set_index('description', inplace=True)
+   
 
     # Convert the dataframe to HTML table string
     mars_facts_html = facts.to_html()
