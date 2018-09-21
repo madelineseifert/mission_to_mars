@@ -1,4 +1,4 @@
-# import necessary libraries
+# dependencies
 from flask import Flask, render_template, jsonify, redirect
 import pymongo
 from pymongo import MongoClient
@@ -12,14 +12,13 @@ client = MongoClient("mongodb://localhost:27017")
 db = client.mars_db
 collection = db.mars_info
 
-# create route that renders index.html template and finds documents from mongo
 @app.route("/")
 def index():
     mars = db.mars_info.find_one()
     return render_template("index.html", mars = mars)
 
 
-# Route that will trigger scrape functions
+# route for trigger scrape functions
 @app.route("/scrape")
 def scrape():
     mars = db.mars_info
